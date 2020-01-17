@@ -12,6 +12,7 @@ public class BlueActions : MonoBehaviour
     {
         if (attacked && home)
         {
+            BlueUpdate.treeStatus = "Idle";
             ControllerScript.current = currentTurn.GREEN;
             attacked = false;
             return states.SUCCESS;
@@ -20,6 +21,7 @@ public class BlueActions : MonoBehaviour
     }
     public static states turnCheck()
     {
+        BlueUpdate.treeStatus = "Idle/Checking Turn";
         switch (ControllerScript.current)
         {
             case currentTurn.BLUE:
@@ -32,9 +34,9 @@ public class BlueActions : MonoBehaviour
     public static states BlueToBoss()
     {
         NavMeshAgent agent = GameObject.Find("BeserkerCube").GetComponent<NavMeshAgent>();
-
         if (!attacked)
         {
+            BlueUpdate.treeStatus = "Moving to Boss";
             agent.SetDestination(GameObject.Find("BossHome").GetComponent<Transform>().position);
             return states.RUNNING;
         }
@@ -46,10 +48,12 @@ public class BlueActions : MonoBehaviour
 
     public static states BlueToHome()
     {
+        
         NavMeshAgent agent = GameObject.Find("BeserkerCube").GetComponent<NavMeshAgent>();
         
         if (!home)
         {
+            BlueUpdate.treeStatus = "Returning Home";
             agent.SetDestination(GameObject.Find("BeserkerHome").GetComponent<Transform>().position);
             return states.RUNNING;
         }

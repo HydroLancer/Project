@@ -12,13 +12,14 @@ public class GreenActions : MonoBehaviour
         if (attacked && home)
         {
             attacked = false;
-            ControllerScript.current = currentTurn.YELLOW;
+            ControllerScript.current = currentTurn.BOSS;
             return states.SUCCESS;
         }
         return states.FAILURE;
     }
     public static states turnCheck()
     {
+        GreenUpdate.treeStatus = "Idle/Checking Turn";
         switch (ControllerScript.current)
         {
             case currentTurn.GREEN:
@@ -34,6 +35,7 @@ public class GreenActions : MonoBehaviour
 
         if (!attacked)
         {
+            GreenUpdate.treeStatus = "Moving to Boss";
             agent.SetDestination(GameObject.Find("BossHome").GetComponent<Transform>().position);
             return states.RUNNING;
         }
@@ -49,6 +51,7 @@ public class GreenActions : MonoBehaviour
 
         if (!home)
         {
+            GreenUpdate.treeStatus = "Returning Home";
             agent.SetDestination(GameObject.Find("BuffHome").GetComponent<Transform>().position);
             return states.RUNNING;
         }

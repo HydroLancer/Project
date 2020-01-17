@@ -24,7 +24,7 @@ public class BossStatus
         shield += value;
     }
 
-    public int returnHP()
+    public int getHP()
     {
         return HP;
     }

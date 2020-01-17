@@ -23,6 +23,7 @@ public class YellowActions : MonoBehaviour
     //Applied to an inverter, checks to see if it's currently their turn
     public static states turnCheck()
     {
+        YellowUpdate.treeStatus = "Idle/Checking Turn";
         switch (ControllerScript.current)
         {
             case currentTurn.YELLOW:
@@ -35,6 +36,7 @@ public class YellowActions : MonoBehaviour
     //Sends yellow cube towards the boss
     public static states YellowToBoss()
     {
+        YellowUpdate.treeStatus = "Moving to Boss";
         NavMeshAgent agent = GameObject.Find("HealerCube").GetComponent<NavMeshAgent>();
         if (!attacked)
         {
@@ -50,10 +52,12 @@ public class YellowActions : MonoBehaviour
     //Sends the Yellow cube back to its home spot.
     public static states YellowToHome()
     {
+        
         NavMeshAgent agent = GameObject.Find("HealerCube").GetComponent<NavMeshAgent>();
 
         if (!home)
         {
+            YellowUpdate.treeStatus = "Returning Home";
             agent.SetDestination(GameObject.Find("HealerHome").GetComponent<Transform>().position);
             return states.RUNNING;
         }

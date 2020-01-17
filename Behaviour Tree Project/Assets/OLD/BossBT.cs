@@ -26,7 +26,7 @@ public class BossBT : MonoBehaviour
     {
         textbox = GameObject.Find("Boss HP Label").GetComponent<Text>();
 
-        bossHP = bossStatus.returnHP().ToString();
+        bossHP = bossStatus.getHP().ToString();
         
         LeafNode.methodDelegate movement = new LeafNode.methodDelegate(MoveToEnemy);
         LeafNode.methodDelegate jump = new LeafNode.methodDelegate(Jump);
@@ -45,7 +45,7 @@ public class BossBT : MonoBehaviour
     void Update()
     {
         root.run();
-        bossHP = bossStatus.returnHP().ToString();
+        bossHP = bossStatus.getHP().ToString();
         textbox.text = "Boss HP: " + bossHP;
     }
 
