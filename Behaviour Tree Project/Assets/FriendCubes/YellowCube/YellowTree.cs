@@ -23,7 +23,7 @@ public class YellowTree : MonoBehaviour
     Inverter yellowTurnChecker = new Inverter(yellowTurnCheck);
 
     //object for stats and getters/setters
-    public static YellowStats stats = new YellowStats();
+    public static GenericStats stats = new GenericStats("Yellow", 950, 50);
 
     // Start is called before the first frame update
     void Start()

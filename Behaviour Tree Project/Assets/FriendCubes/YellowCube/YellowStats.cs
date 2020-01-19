@@ -90,4 +90,9 @@ public class YellowStats
         damage += value;
         damageBuffed = true;
     }
+
+    public bool checkBuff()
+    {
+        return damageBuffed;
+    }
 }

@@ -20,7 +20,7 @@ public class YellowUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HPBox.text = "Yellow HP: " + YellowTree.stats.getHP().ToString();
+        HPBox.text = "Yellow HP: " + YellowTree.stats.currentHP.ToString();
         TreeBox.text = "Tree Status: " + treeStatus;
     }
 }

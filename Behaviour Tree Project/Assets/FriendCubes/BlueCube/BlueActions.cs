@@ -59,20 +59,26 @@ public class BlueActions : MonoBehaviour
         }
         else
         {
-            return states.SUCCESS;
+             return states.SUCCESS;
         }
         
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
+        ParticleSystem boop;
         if (other.name == "BossHome")
         {
+            boop = GameObject.Find("Boss Damaged").GetComponent<ParticleSystem>();
+            boop.Play();
+            BossTree.stats.TakeDamage(BlueTree.stats.DoDamage());
             home = false;
             attacked = true;
         }
         if (other.name == "BeserkerHome")
         {
+            Transform wiggles = this.GetComponent<Transform>();
+            wiggles.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
             home = true;
         }
     }

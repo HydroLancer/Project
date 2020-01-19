@@ -24,7 +24,7 @@ public class Sequence : Node
                     anyChildRunning = true;
                     continue;
                 default:
-                    currentState = states.SUCCESS;
+                    currentState = states.FAILURE;
                     return currentState;
             }
         }

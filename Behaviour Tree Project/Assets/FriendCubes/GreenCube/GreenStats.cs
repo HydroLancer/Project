@@ -70,4 +70,9 @@ public class GreenStats
     {
         return damageBuffOutput;
     }
+
+    public bool checkBuff()
+    {
+        return damageBuffed;
+    }
 }

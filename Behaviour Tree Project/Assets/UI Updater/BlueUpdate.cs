@@ -20,7 +20,7 @@ public class BlueUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HPBox.text = "Blue HP: " + BlueTree.stats.getHP().ToString();
+        HPBox.text = "Blue HP: " + BlueTree.stats.currentHP.ToString();
         TreeBox.text = "Tree Status: " + treeStatus;
     }
 }

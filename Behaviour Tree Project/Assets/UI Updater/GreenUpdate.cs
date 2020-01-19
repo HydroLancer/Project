@@ -20,7 +20,7 @@ public class GreenUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HPBox.text = "Green HP: " + GreenTree.stats.getHP().ToString();
+        HPBox.text = "Green HP: " + GreenTree.stats.currentHP.ToString();
         TreeBox.text = "Tree Status: " + treeStatus;
     }
 }

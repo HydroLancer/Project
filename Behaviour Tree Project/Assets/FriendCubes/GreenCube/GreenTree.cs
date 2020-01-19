@@ -22,7 +22,7 @@ public class GreenTree : MonoBehaviour
     Inverter greenTurnChecker = new Inverter(greenTurnCheck);
 
     //object to update stats
-    public static GreenStats stats = new GreenStats();
+    public static GenericStats stats = new GenericStats("Green", 1000, 100);
 
     // Start is called before the first frame update
     void Start()

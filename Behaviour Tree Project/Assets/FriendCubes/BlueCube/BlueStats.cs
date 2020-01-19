@@ -77,4 +77,9 @@ public class BlueStats
         damage += value;
         damageBuffed = true;
     }
+
+    public bool checkBuff()
+    {
+        return damageBuffed;
+    }
 }

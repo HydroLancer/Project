@@ -20,7 +20,7 @@ public class BossUpdate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HPBox.text = "Boss HP: " + BossTree.stats.getHP().ToString();
+        HPBox.text = "Boss HP: " + BossTree.stats.currentHP.ToString();
         TreeBox.text = "Tree Status: " + treeStatus;
     }
 }

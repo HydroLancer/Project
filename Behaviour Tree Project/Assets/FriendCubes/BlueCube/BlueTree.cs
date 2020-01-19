@@ -18,14 +18,13 @@ public class BlueTree : MonoBehaviour
     LeafNode blueMoveToBoss = new LeafNode(blueMove);
     LeafNode blueReturnHome = new LeafNode(blueGoHome);
     LeafNode blueTurnEnd = new LeafNode(blueEndTurn);
-
     Inverter blueTurnChecker = new Inverter(blueTurnCheck);
-    public static BlueStats stats;
+    public static GenericStats stats;
      
     // Start is called before the first frame update
     void Start()
     {
-        stats = new BlueStats();
+        stats = new GenericStats("Blue", 1200, 150);
         Blue.addChild(blueTurnChecker);
         blueAttackBoss.addChild(blueMoveToBoss);
         blueAttackBoss.addChild(blueReturnHome);

@@ -26,7 +26,7 @@ public class BossTree : MonoBehaviour
     Inverter BossTurnCheker = new Inverter(bossTurnCheck);
 
     //object to update stats
-    public static BossStatus stats = new BossStatus();
+    static public GenericStats stats;
 
     //NavMesh Agent
     static public NavMeshAgent agent;
@@ -34,6 +34,7 @@ public class BossTree : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stats = new GenericStats("Boss", 10000, 100);
         Boss.addChild(BossTurnCheker);
         BossAttackEnemy.addChild(BossTarget);
         BossAttackEnemy.addChild(BossMoveToEnemy);

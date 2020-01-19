@@ -32,7 +32,6 @@ public class YellowActions : MonoBehaviour
                 return states.FAILURE;
         }
     }
-
     //Sends yellow cube towards the boss
     public static states YellowToBoss()
     {
@@ -48,7 +47,6 @@ public class YellowActions : MonoBehaviour
             return states.SUCCESS;
         }
     }
-
     //Sends the Yellow cube back to its home spot.
     public static states YellowToHome()
     {
@@ -67,16 +65,21 @@ public class YellowActions : MonoBehaviour
         }
 
     }
-
     private void OnTriggerEnter(Collider other)
     {
+        ParticleSystem boop;
         if (other.name == "BossHome")
         {
+            boop = GameObject.Find("Boss Damaged").GetComponent<ParticleSystem>();
+            boop.Play();
+            BossTree.stats.TakeDamage(YellowTree.stats.DoDamage());
             home = false;
             attacked = true;
         }
         if (other.name == "HealerHome")
         {
+            Transform wiggles = this.GetComponent<Transform>();
+            wiggles.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
             home = true;
         }
     }
