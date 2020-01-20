@@ -34,7 +34,7 @@ public class BossTree : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stats = new GenericStats("Boss", 10000, 100);
+        stats = new GenericStats("Boss", 10000, 210);
         Boss.addChild(BossTurnCheker);
         BossAttackEnemy.addChild(BossTarget);
         BossAttackEnemy.addChild(BossMoveToEnemy);
