@@ -107,6 +107,49 @@ public class YellowActions : MonoBehaviour
         }
     }
 
+
+    //Casts a heal on various NPCs
+    public static states CastHealOnSelf()
+    {
+        if (YellowTree.stats.currentHP < (YellowTree.stats.m_maxHP / 100) * 30)
+        {
+            //Play a particle effect here
+            YellowTree.stats.RecoverHP(Random.Range(100, 150));
+            return states.SUCCESS;
+        }
+        else
+        {
+            return states.FAILURE;
+        }
+    }
+    public static states CastHealOnBlue()
+    {
+        if (BlueTree.stats.currentHP < (BlueTree.stats.m_maxHP / 100) * 30)
+        {
+            //Play a particle effect here
+            BlueTree.stats.RecoverHP(Random.Range(100, 150));
+            return states.SUCCESS;
+        }
+        else
+        {
+            return states.FAILURE;
+        }
+    }
+
+    public static states CastHealOnGreen()
+    {
+        if (GreenTree.stats.currentHP < (GreenTree.stats.m_maxHP / 100) * 30)
+        {
+            //Play a particle effect here
+            GreenTree.stats.RecoverHP(Random.Range(100, 150));
+            return states.SUCCESS;
+        }
+        else
+        {
+            return states.FAILURE;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         ParticleSystem boop;
