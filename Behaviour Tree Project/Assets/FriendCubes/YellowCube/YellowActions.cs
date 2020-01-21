@@ -8,18 +8,13 @@ public class YellowActions : MonoBehaviour
     private static bool home = false;
     private static bool attacked = false;
 
-
+    //Ends the current turn and adjusts the current turn to the next NPC
     public static states endTurn()
     {
-        if (attacked && home)
-        {
-            ControllerScript.current = currentTurn.BLUE;
-            attacked = false;
-            return states.SUCCESS;
-        }
-        return states.FAILURE;
+        ControllerScript.current = currentTurn.BLUE;
+        attacked = false;
+        return states.SUCCESS; 
     }
-
     //Applied to an inverter, checks to see if it's currently their turn
     public static states turnCheck()
     {
@@ -32,6 +27,8 @@ public class YellowActions : MonoBehaviour
                 return states.FAILURE;
         }
     }
+
+
     //Sends yellow cube towards the boss
     public static states YellowToBoss()
     {
@@ -50,7 +47,6 @@ public class YellowActions : MonoBehaviour
     //Sends the Yellow cube back to its home spot.
     public static states YellowToHome()
     {
-        
         NavMeshAgent agent = GameObject.Find("HealerCube").GetComponent<NavMeshAgent>();
 
         if (!home)
@@ -59,12 +55,58 @@ public class YellowActions : MonoBehaviour
             agent.SetDestination(GameObject.Find("HealerHome").GetComponent<Transform>().position);
             return states.RUNNING;
         }
-        else
+        else if (!attacked && home)
         {
             return states.SUCCESS;
         }
+        return states.FAILURE;
 
     }
+
+    //Casts shield on specific NPC
+    public static states CastShieldOnBlue()
+    {
+        if (BlueTree.stats.shieldBuffed)
+        {
+            return states.FAILURE;
+        }
+        else
+        {
+            YellowTree.particleShooter = GameObject.Find("ShieldCastBlue").GetComponent<ParticleSystem>();
+            YellowTree.particleShooter.Play();
+            BlueTree.stats.SetShield(200);
+            return states.SUCCESS;
+        }
+    }
+    public static states CastShieldOnGreen()
+    {
+        if (GreenTree.stats.shieldBuffed)
+        {
+            return states.FAILURE;
+        }
+        else
+        {
+            YellowTree.particleShooter = GameObject.Find("ShieldCastGreen").GetComponent<ParticleSystem>();
+            YellowTree.particleShooter.Play();
+            GreenTree.stats.SetShield(200);
+            return states.SUCCESS;
+        }
+    }
+    public static states CastShieldOnSelf()
+    {
+        if (YellowTree.stats.shieldBuffed)
+        {
+            return states.FAILURE;
+        }
+        else
+        {
+            YellowTree.particleShooter = GameObject.Find("ShieldCastSelf").GetComponent<ParticleSystem>();
+            YellowTree.particleShooter.Play();
+            YellowTree.stats.SetShield(200);
+            return states.SUCCESS;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         ParticleSystem boop;
@@ -76,10 +118,13 @@ public class YellowActions : MonoBehaviour
             home = false;
             attacked = true;
         }
+        if (other.name == "Casting Spot")
+        {
+            home = false;
+            attacked = true;
+        }
         if (other.name == "HealerHome")
         {
-            Transform wiggles = this.GetComponent<Transform>();
-            wiggles.Rotate(0.0f, 180.0f, 0.0f, Space.Self);
             home = true;
         }
     }

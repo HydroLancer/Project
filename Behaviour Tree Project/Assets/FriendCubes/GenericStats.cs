@@ -6,13 +6,13 @@ public class GenericStats
 {
     //Parameters per NPC
 
-    private string m_name { get; set; }
-    private int m_maxHP { get; set; }
-    public int currentHP { get; set; }
-    private int shield { get; set; }
-    private int m_damage { get; set; }
-    private bool shieldBuffed { get; set; }
-    private bool damageBuffed { get; set; }
+    private string m_name;
+    public int m_maxHP;
+    public int currentHP;
+    public int shield;
+    public int m_damage;
+    public bool shieldBuffed;
+    public bool damageBuffed;
 
     public GenericStats(string name, int maxHP, int damage)
     {
@@ -31,12 +31,11 @@ public class GenericStats
     //Checks to see if the NPC has a shield, and if it does, takes the damage off it instead before taking off currentHP
     public void TakeDamage(int value)
     {
-        int remainder;
         if (shieldBuffed)
         {
             if (value > shield)
             {
-                remainder = value - shield;
+                int remainder = value - shield;
                 shield = 0;
                 currentHP -= remainder;
                 shieldBuffed = false;
