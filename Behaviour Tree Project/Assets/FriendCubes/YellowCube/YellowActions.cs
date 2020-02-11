@@ -150,6 +150,20 @@ public class YellowActions : MonoBehaviour
         }
     }
 
+    public static states castingAnimation()
+    {
+        ParticleSystem cast = GameObject.Find("Cast Animation").GetComponent<ParticleSystem>();
+        cast.Play();
+        float timer = 100.00f;
+        timer -= Time.deltaTime;
+        if (timer <= 0.00f)
+        {
+            return states.SUCCESS;
+        }
+        return states.RUNNING;
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         ParticleSystem boop;

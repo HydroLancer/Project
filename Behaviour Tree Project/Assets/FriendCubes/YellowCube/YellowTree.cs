@@ -13,6 +13,7 @@ public class YellowTree : MonoBehaviour
     static LeafNode.methodDelegate castShieldBlue = new LeafNode.methodDelegate(YellowActions.CastShieldOnBlue);
     static LeafNode.methodDelegate castShieldGreen = new LeafNode.methodDelegate(YellowActions.CastShieldOnGreen);
     static LeafNode.methodDelegate castShieldSelf = new LeafNode.methodDelegate(YellowActions.CastShieldOnSelf);
+    static LeafNode.methodDelegate castingAnimation = new LeafNode.methodDelegate(YellowActions.castingAnimation);
 
     //Turn Checkers
     static LeafNode.methodDelegate checkTurn = new LeafNode.methodDelegate(YellowActions.turnCheck);
@@ -41,6 +42,7 @@ public class YellowTree : MonoBehaviour
     LeafNode castBlue = new LeafNode(castShieldBlue);
     LeafNode castGreen = new LeafNode(castShieldGreen);
     LeafNode castSelf = new LeafNode(castShieldSelf);
+    LeafNode castAnim = new LeafNode(castingAnimation);
 
     //Heals
 
@@ -66,16 +68,19 @@ public class YellowTree : MonoBehaviour
         //Build the behaviour tree Leaf nodes upwards
 
         //Shields
+        actualCastSelf.addChild(castAnim);
         actualCastSelf.addChild(castSelf);
         actualCastSelf.addChild(EndTurn);
         ShieldSelf.addChild(actualCastSelf);
         DoShield.addChild(ShieldSelf);
 
+        actualCastGreen.addChild(castAnim);
         actualCastGreen.addChild(castGreen);
         actualCastGreen.addChild(EndTurn);
         ShieldGreen.addChild(actualCastGreen);
         DoShield.addChild(ShieldGreen);
 
+        actualCastBlue.addChild(castAnim);
         actualCastBlue.addChild(castBlue);
         actualCastBlue.addChild(EndTurn);
         ShieldBlue.addChild(actualCastBlue);
